@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Train Scheduler</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Firebase References -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+  <!-- Moment.js Reference -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <style>
+    .jumbotron {
+      color: white;
+      opacity:0.8;
+      margin-top:15px;
+    }
+    body{
+        background-image: url(1.jpg);
+        background-size: cover;
+    background-attachment: fixed;
+    }
+    .card{
+        opacity: 0.8;
+        
+    }
+    #submit, .form-control{
+        opacity: 1;
+        
+    }
+    label, .card-header{
+        font-weight: bold;
+    }
+    .card-header{
+        background-color: #5A6065;
+        color: white;
+    }
+    
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron text-center bg-dark">
+      <h1>Train Scheduler</h1>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            Current Train Schedule
+          </div>
+          <div class="card-body">
+            <table class="table table-hover">
+             <thead>
+              <tr>
+                <th>
+                  Train Name
+                </th>
+                <th>
+                  Destination
+                </th>
+                <th>
+                  Frequency (min)
+                </th>
+                <th>
+                  Next Arrival
+                </th>
+                <th>
+                  Mainutes Away
+                </th>
+              </tr>
+
+             </thead>
+             <tbody>
+               
+             </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            Add Train
+          </div>
+          <div class="card-body">
+            <form action="">
+              <div class="form-group">
+                <label for="nameInput">Train name</label>
+                <input type="text"class="form-control" id="trainName">
+              </div>
+              <div class="form-group">
+                <label for="roleInput">Destination</label>
+                <input type="text"class="form-control" id="destination">
+              </div>
+              <div class="form-group">
+                <label for="startDateInput">First Train Time (HH:mm - military time)</label>
+                <input type="text"class="form-control" id="start">
+              </div>
+              <div class="form-group">
+                <label for="monthlyRateInput">Frequency(min)</label>
+                <input type="text"class="form-control" id="mR">
+              </div>
+              <div class="text-right">
+                <button id="submit"class="btn btn-dark">Submit</button>
+              </div>
+           
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<script src="app.js"></script>
+</body>
+
+</html>
