@@ -20,50 +20,43 @@
   <style>
     .jumbotron {
       color: white;
-      opacity:0.8;
-      margin-top:15px;
-      
+      opacity: 0.8;
+      margin-top: 15px;
     }
-    body{
-        background-image: url(1.jpg);
-        background-size: cover;
-        background-attachment: fixed;
+    body {
+      background-image: url(1.jpg);
+      background-size: cover;
+      background-attachment: fixed;
     }
-    .card{
-        background: rgba(0, 0, 0, 0.2);
-        
+    .card {
+      background: rgba(0, 0, 0, 0.2);
     }
-    #submit, .form-control{
-        opacity: 1;
-        
+    #submit,
+    .form-control {
+      opacity: 1;
     }
-    label, .card-header{
-        font-weight: bold;
-        color: white;
-        
+    label,
+    .card-header {
+      font-weight: bold;
+      color: white;
     }
-
-    .card-header{
-        background-color: #5A6065;
-        color: white;
-        background: rgba(57, 74, 75, 0.575);
-        
+    .card-header {
+      background-color: #5A6065;
+      color: white;
+      background: rgba(57, 74, 75, 0.575);
     }
-    .container{
-        margin-bottom: 30px;
+    .container {
+      margin-bottom: 30px;
     }
-    .form-control{
-        opacity: 0.8;
-        background-color: white;
+    .form-control {
+      opacity: 0.8;
+      background-color: white;
     }
-    th{
-        color:white;        
+    th {
+      color: white;
     }
-    
-
   </style>
 </head>
-
 <body>
   <div class="container">
     <div class="jumbotron text-center bg-dark">
@@ -77,30 +70,27 @@
           </div>
           <div class="card-body">
             <table class="table table-hover">
-             <thead>
-              <tr>
-                <th>
-                  Train Name
-                </th>
-                <th>
-                  Destination
-                </th>
-                <th>
-                  Frequency (min)
-                </th>
-                <th>
-                  Next Arrival
-                </th>
-                <th>
-                  Mainutes Away
-                </th>
-              </tr>
-
-             </thead>
-             <tbody>
-               
-             </tbody>
-
+              <thead>
+                <tr>
+                  <th>
+                    Train Name
+                  </th>
+                  <th>
+                    Destination
+                  </th>
+                  <th>
+                    Frequency (min)
+                  </th>
+                  <th>
+                    Next Arrival
+                  </th>
+                  <th>
+                    Mainutes Away
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
             </table>
           </div>
         </div>
@@ -116,35 +106,31 @@
           <div class="card-body">
             <form action="">
               <div class="form-group">
-                <label for="nameInput">Train name</label>
-                <input type="text"class="form-control" id="trainName">
+                <label for="trainName">Train name</label>
+                <input type="text" class="form-control" id="trainName">
               </div>
               <div class="form-group">
-                <label for="roleInput">Destination</label>
-                <input type="text"class="form-control" id="destination">
+                <label for="trainDestination">Destination</label>
+                <input type="text" class="form-control" id="destination">
               </div>
               <div class="form-group">
-                <label for="startDateInput">First Train Time (HH:mm - military time)</label>
-                <input type="text"class="form-control" id="start">
+                <label for="firstTrainTime">First Train Time (HH:mm - military time)</label>
+                <input type="text" class="form-control" id="start">
               </div>
               <div class="form-group">
-                <label for="monthlyRateInput">Frequency(min)</label>
-                <input type="text"class="form-control" id="mR">
+                <label for="trainFrequecny">Frequency(min)</label>
+                <input type="text" class="form-control" id="frequecny">
               </div>
               <div class="text-right">
-                <button id="submit"class="btn btn-dark">Submit</button>
+                <button id="submit" class="btn btn-dark">Submit</button>
               </div>
-           
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 
 </html>
