@@ -30,7 +30,7 @@
       };
 
       database.ref().push(newTrain);
-
+ 
       console.log(newTrain.name);
       console.log(newTrain.destination);
       console.log(newTrain.time);
