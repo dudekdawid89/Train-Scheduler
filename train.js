@@ -67,11 +67,7 @@ console.log(childSnapshot.val());
     var arrivalTime = (moment(nextTrain).format("hh:mm"));
     console.log("diffTime: "+diffTime)
 
-    //David, here is the issue, diffTime is negative when userinput time
-    //is great than current time 
     if(diffTime < 0){
-          //david, you forgot to supply the format type "HH:mm" to convert to moment datatype
-          //. You noticed  added "a" at the end of hh:mm which refers to am or pm
       arrivalTime = (moment(firstTime, "HH:mm").format("hh:mm a"))
       tMinutesTillTrain=diffTime*-1;
     }
