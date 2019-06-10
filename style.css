@@ -9,21 +9,22 @@
     background-attachment: fixed;
   }
   .card {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.5);
   }
   #submit,
   .form-control {
     opacity: 1;
   }
-  label,
-  .card-header {
+  label
+   {
     font-weight: bold;
     color: white;
   }
   .card-header {
     background-color: #5A6065;
     color: white;
-    background: rgba(57, 74, 75, 0.575);
+    background: rgba(57, 74, 75, 0.675);
+    font-weight: bold;
   }
   .container {
     margin-bottom: 30px;
@@ -33,5 +34,13 @@
     background-color: white;
   }
   th {
-    color: white;
+    color: black;
+    background-color:white;
+    background: rgba(237, 247, 237, 0.4);
+    border-radius: 3px;
+  }
+  tbody{
+      background-color: white;
+      opacity: 0.8;
+      font-weight: bolder;
   }

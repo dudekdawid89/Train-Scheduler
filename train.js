@@ -56,4 +56,26 @@ console.log(childSnapshot.val());
       console.log(firstTrainTime);
       console.log(trainFrequecny);
 
+
+      var tFrequency = trainFrequecny;
+      var firstTime =firstTrainTime; 
+      var firstTimeConverted = moment(firstTime, "HH:mm");
+      var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+      var tRemainder = diffTime % tFrequency;
+      var tMinutesTillTrain = tFrequency - tRemainder;
+      var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+      var arrivalTime = (moment(nextTrain).format("hh:mm"))
+      
+
+      var newRow = $("<tr>").append(
+        $("<td>").text(trainName),
+        $("<td>").text(trainDestination),
+        $("<td>").text(trainFrequecny),
+        $("<td>").text(arrivalTime),
+        $("<td>").text(tMinutesTillTrain),
+      );
+    
+      // Append the new row to the table
+      $("tbody").append(newRow);
+
     });

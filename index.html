@@ -31,7 +31,7 @@
             Current Train Schedule
           </div>
           <div class="card-body">
-            <table class="table table-hover">
+            <table class="table table-hover" id="train-table">
               <thead>
                 <tr>
                   <th>
@@ -47,7 +47,7 @@
                     Next Arrival
                   </th>
                   <th>
-                    Mainutes Away
+                    Minutes Away
                   </th> 
                 </tr>
               </thead>
@@ -69,19 +69,19 @@
             <form action="">
               <div class="form-group">
                 <label for="trainName">Train name</label>
-                <input type="text" class="form-control" id="trainName-input">
+                <input type="text" class="form-control" id="trainName-input" placeholder="Amtrak Train">
               </div>
               <div class="form-group">
                 <label for="trainDestination">Destination</label>
-                <input type="text" class="form-control" id="destination-input">
+                <input type="text" class="form-control" id="destination-input" placeholder="Miami">
               </div>
               <div class="form-group">
                 <label for="firstTrainTime">First Train Time (HH:mm - military time)</label>
-                <input type="text" class="form-control" id="firstTime-input">
+                <input type="text" class="form-control" id="firstTime-input"placeholder="14:32">
               </div>
               <div class="form-group">
                 <label for="trainFrequecny">Frequency(min)</label>
-                <input type="text" class="form-control" id="frequecny-input">
+                <input type="text" class="form-control" id="frequecny-input"placeholder="20">
               </div>
               <div class="text-right">
                 <button id="submit" class="btn btn-dark">Submit</button>
