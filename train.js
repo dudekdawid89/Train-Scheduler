@@ -1,92 +1,101 @@
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAPVLoPZ6D2ErJfI6ftRkJRqNNGP6Fg1dQ",
-    authDomain: "train-scheduler-71738.firebaseapp.com",
-    databaseURL: "https://train-scheduler-71738.firebaseio.com",
-    projectId: "train-scheduler-71738",
-    storageBucket: "train-scheduler-71738.appspot.com",
-    messagingSenderId: "400896639790",
-    appId: "1:400896639790:web:544da7d5037e6b4e"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+ // Your web app's Firebase configuration
+ var firebaseConfig = {
+  apiKey: "AIzaSyAPVLoPZ6D2ErJfI6ftRkJRqNNGP6Fg1dQ",
+  authDomain: "train-scheduler-71738.firebaseapp.com",
+  databaseURL: "https://train-scheduler-71738.firebaseio.com",
+  projectId: "train-scheduler-71738",
+  storageBucket: "train-scheduler-71738.appspot.com",
+  messagingSenderId: "400896639790",
+  appId: "1:400896639790:web:544da7d5037e6b4e"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-  var database = firebase.database();
-
-
-  $("#submit").on("click", function(event){
-    event.preventDefault();
-
-      var trainName = $("#trainName-input").val().trim();
-      var trainDestination = $("#destination-input").val().trim();
-      var firstTrainTime = $("#firstTime-input").val().trim();
-      var trainFrequecny = $("#frequecny-input").val().trim();
-
-      var newTrain = {
-        name: trainName,
-        destination: trainDestination,
-        time: firstTrainTime,
-        frequecny: trainFrequecny
-      };
-
-      database.ref().push(newTrain);
-      
-      console.log(newTrain.name);
-      console.log(newTrain.destination);
-      console.log(newTrain.time);
-      console.log(newTrain.frequecny);
+var database = firebase.database();
 
 
-      $("#trainName-input").val("");
-      $("#destination-input").val("");
-      $("#firstTime-input").val("");
-      $("#frequecny-input").val("");
-  });
+$("#submit").on("click", function(event){
+  event.preventDefault();
 
-  database.ref().on("child_added",function(childSnapshot){
+    var trainName = $("#trainName-input").val().trim();
+    var trainDestination = $("#destination-input").val().trim();
+    var firstTrainTime = $("#firstTime-input").val().trim();
+    var trainFrequecny = $("#frequecny-input").val().trim();
+
+    var newTrain = {
+      name: trainName,
+      destination: trainDestination,
+      time: firstTrainTime,
+      frequecny: trainFrequecny
+    };
+
+    database.ref().push(newTrain);
+    
+    console.log(newTrain.name);
+    console.log(newTrain.destination);
+    console.log(newTrain.time);
+    console.log(newTrain.frequecny);
+
+
+    $("#trainName-input").val("");
+    $("#destination-input").val("");
+    $("#firstTime-input").val("");
+    $("#frequecny-input").val("");
+});
+
+database.ref().on("child_added",function(childSnapshot){
 console.log(childSnapshot.val());
 
-      var trainName = childSnapshot.val().name;
-      var trainDestination = childSnapshot.val().destination;
-      var firstTrainTime = childSnapshot.val().time;
-      var trainFrequecny = childSnapshot.val().frequecny;
+    var trainName = childSnapshot.val().name;
+    var trainDestination = childSnapshot.val().destination;
+    var firstTrainTime = childSnapshot.val().time;
+    var trainFrequecny = childSnapshot.val().frequecny;
 
-      console.log(trainName);
-      console.log(trainDestination);
-      console.log(firstTrainTime);
-      console.log(trainFrequecny);
+    console.log(trainName);
+    console.log(trainDestination);
+    console.log(firstTrainTime);
+    console.log(trainFrequecny);
 
 
-      var tFrequency = trainFrequecny;
-      var firstTime =firstTrainTime; 
-      var firstTimeConverted = moment(firstTime, "HH:mm");
-      var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-      var tRemainder = diffTime % tFrequency;
-      var tMinutesTillTrain = tFrequency - tRemainder;
-      var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-      var arrivalTime = (moment(nextTrain).format("hh:mm a"));
-      if(diffTime < 0){
-        arrivalTime = (moment(fistTime, "HH:mm").format("hh:mm a"))
-      }
-      else{
-        arrivalTime = (moment(nextTrain).format("hh:mm a"))
-      }
-     
+    var tFrequency = trainFrequecny;
+    var firstTime =firstTrainTime; 
+    var firstTimeConverted = moment(firstTime, "HH:mm");
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    var tRemainder = diffTime % tFrequency;
+    var tMinutesTillTrain = tFrequency - tRemainder;
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    var arrivalTime = (moment(nextTrain).format("hh:mm"));
+    console.log("diffTime: "+diffTime)
 
-      var newRow = $("<tr>").append(
-        $("<td>").text(trainName),
-        $("<td>").text(trainDestination),
-        $("<td>").text(trainFrequecny),
-        $("<td>").text(arrivalTime),
-        $("<td>").text(tMinutesTillTrain),
-        $("<td>").html("<button class = btn >Remove</button>"),
+    //David, here is the issue, diffTime is negative when userinput time
+    //is great than current time 
+    if(diffTime < 0){
+          //david, you forgot to supply the format type "HH:mm" to convert to moment datatype
+          //. You noticed  added "a" at the end of hh:mm which refers to am or pm
+      arrivalTime = (moment(firstTime, "HH:mm").format("hh:mm a"))
+      tMinutesTillTrain=diffTime*-1;
+    }
+    else{
+      arrivalTime = (moment(nextTrain).format("hh:mm a"))
+    }
+   
+
+    var newRow = $("<tr>").append(
+      $("<td>").text(trainName),
+      $("<td>").text(trainDestination),
+      $("<td>").text(trainFrequecny),
+      $("<td>").text(arrivalTime),
+      $("<td>").text(tMinutesTillTrain),
+      $("<td>").html("<button class = btn >Remove</button>"),
+    );
+  
+    // Append the new row to the table
+    $("tbody").append(newRow);
+
+  });
+
+    $(document).on("click",".btn" ,function (){
+      $("<td>").remove();
+    })
+  
         
-      );
-      $(document).on("click",".btn" ,function (){
-        $("<td>").remove();
-      })
-      // Append the new row to the table
-      $("tbody").append(newRow);
-
-    });
-
