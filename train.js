@@ -64,8 +64,14 @@ console.log(childSnapshot.val());
       var tRemainder = diffTime % tFrequency;
       var tMinutesTillTrain = tFrequency - tRemainder;
       var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-      var arrivalTime = (moment(nextTrain).format("hh:mm"))
-      
+      var arrivalTime = (moment(nextTrain).format("hh:mm a"));
+      if(diffTime < 0){
+        arrivalTime = (moment(fistTime, "HH:mm").format("hh:mm a"))
+      }
+      else{
+        arrivalTime = (moment(nextTrain).format("hh:mm a"))
+      }
+     
 
       var newRow = $("<tr>").append(
         $("<td>").text(trainName),
@@ -73,9 +79,14 @@ console.log(childSnapshot.val());
         $("<td>").text(trainFrequecny),
         $("<td>").text(arrivalTime),
         $("<td>").text(tMinutesTillTrain),
+        $("<td>").html("<button class = btn >Remove</button>"),
+        
       );
-    
+      $(document).on("click",".btn" ,function (){
+        $("<td>").remove();
+      })
       // Append the new row to the table
       $("tbody").append(newRow);
 
     });
+
