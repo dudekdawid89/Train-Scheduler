@@ -75,6 +75,11 @@ console.log(childSnapshot.val());
       arrivalTime = (moment(nextTrain).format("hh:mm a"))
     }
    
+    
+    var newButton = $("<button>");
+    newButton.attr("data-childid",childSnapshot.key);
+    newButton.addClass("delete btn-danger btn");
+    newButton.text("Remove");
 
     var newRow = $("<tr>").append(
       $("<td>").text(trainName),
@@ -82,7 +87,8 @@ console.log(childSnapshot.val());
       $("<td>").text(trainFrequecny),
       $("<td>").text(arrivalTime),
       $("<td>").text(tMinutesTillTrain),
-      $("<td>").html("<button class = btn >Remove</button>"),
+      $("<td>").html(newButton),
+      
     );
   
     // Append the new row to the table
@@ -90,8 +96,16 @@ console.log(childSnapshot.val());
 
   });
 
-    $(document).on("click",".btn" ,function (){
-      $("<td>").remove();
-    })
-  
+  $(document).on("click",".delete",function(){
+    var key=$(this).attr("data-child-id") 
+   
+   
+    //David, this gets the node and deletes it from the firebase
+    database.ref(key).remove();
+   
+    //David, this refreshes the page
+    location.reload();
+   //  alert(key)
+   
+  })   
         
