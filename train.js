@@ -13,7 +13,6 @@ firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
 
-
 $("#submit").on("click", function(event){
   event.preventDefault();
 
@@ -36,7 +35,6 @@ $("#submit").on("click", function(event){
     console.log(newTrain.time);
     console.log(newTrain.frequecny);
 
-
     $("#trainName-input").val("");
     $("#destination-input").val("");
     $("#firstTime-input").val("");
@@ -56,7 +54,6 @@ console.log(childSnapshot.val());
     console.log(firstTrainTime);
     console.log(trainFrequecny);
 
-
     var tFrequency = trainFrequecny;
     var firstTime =firstTrainTime; 
     var firstTimeConverted = moment(firstTime, "HH:mm");
@@ -75,7 +72,6 @@ console.log(childSnapshot.val());
       arrivalTime = (moment(nextTrain).format("hh:mm a"))
     }
    
-    
     var newButton = $("<button>");
     newButton.attr("data-childid",childSnapshot.key);
     newButton.addClass("delete btn-danger btn");
@@ -91,7 +87,6 @@ console.log(childSnapshot.val());
       
     );
   
-    // Append the new row to the table
     $("tbody").append(newRow);
 
   });
@@ -99,13 +94,9 @@ console.log(childSnapshot.val());
   $(document).on("click",".delete",function(){
     var key=$(this).attr("data-child-id") 
    
-   
-    //David, this gets the node and deletes it from the firebase
     database.ref(key).remove();
    
-    //David, this refreshes the page
     location.reload();
-   //  alert(key)
    
   })   
         
